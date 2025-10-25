@@ -221,26 +221,16 @@ function addDragAndDrop() {
       const termoCorreto = rodadaAtual.find(i => i.termo === termo.dataset.termo);
 
       if (dragged.textContent === termoCorreto.definicao) {
-        termo.classList.add("correct");
-        score += 10;
-        dragged.remove();
-        feedback("Correto! 🎉", true);
-      } else {
-        termo.classList.add("incorrect");
-        feedback("Errado! 😢", false);
-      }
-
-      if (dragged.textContent === termoCorreto.definicao) {
         // ✅ Mantém verde (acerto permanente)
         termo.classList.add("correct");
         score += 10;
         dragged.remove();
-        feedback("Correto! 🎉", true);
+        feedback("Correto! ✅", true);
         termo.classList.remove("drag-over"); // garante que a borda azul desapareça
       } else {
         // ❌ Mostra vermelho por 1s e volta ao normal
         termo.classList.add("incorrect");
-        feedback("Errado! 😢", false);
+        feedback("Errado! ❌ Tente novamente!  ", false);
         setTimeout(() => termo.classList.remove("incorrect"), 1000);
         termo.classList.remove("drag-over");
       }
