@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz: Arrastar e Soltar</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <section id="tela-inicial" class="tela ativa">
+    <div class="card">
+      <h1>QUIZ</h1>
+      <p class="sub">Arrastar e Soltar (HTML • CSS • DOM)</p>
+      <button id="btn-iniciar" class="btn primario">Iniciar Quiz</button>
+      <button id="btn-criar-quiz" class="btn secundario">Criar Quiz</button>
+    </div>
+  </section>
+
+  <section id="tela-criar-quiz" class="tela">
+    <div class="card">
+      <h2>Criar Novo Quiz</h2>
+      <div id="form-criar-quiz">
+        <div class="quiz-question-form">
+          <input type="text" class="question-input" placeholder="Digite a pergunta" required>
+          <div class="options-container">
+            <input type="text" class="option-input" placeholder="Opção 1" required>
+            <input type="text" class="option-input" placeholder="Opção 2" required>
+            <input type="text" class="option-input" placeholder="Opção 3" required>
+          </div>
+          <select class="answer-select" required>
+            <option value="">Selecione a resposta correta</option>
+          </select>
+        </div>
+        <div class="quiz-buttons">
+          <button id="btn-add-question" class="btn">Adicionar Pergunta</button>
+          <button id="btn-salvar-quiz" class="btn primario">Salvar Quiz</button>
+          <button id="btn-voltar" class="btn secundario">Voltar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tela-jogo" class="tela">
+    <header class="topbar">
+      <div class="info">
+        <span id="etapa">Rodada <strong id="rodada-num">1</strong> de <strong id="rodadas-total">5</strong></span>
+        <span id="placar">Pontuação: <strong id="pontuacao">0</strong></span>
+      </div>
+      <div class="progresso">
+        <div id="progress-bar"></div>
+      </div>
+    </header>
+
+    <div class="game-area card">
+      <h2 id="question">Pergunta</h2>
+      <div id="options" class="options-grid"></div>
+      <div id="drop-zone" class="drop-zone">Arraste a resposta aqui</div>
+      <div id="feedback" class="feedback"></div>
+    </div>
+
+  
+  </section>
+
+  <section id="tela-final" class="tela">
+    <div class="card">
+      <h2>Parabéns!</h2>
+      <p>Você concluiu todas as rodadas.</p>
+      <p class="sub">Pontuação final: <strong id="pontuacao-final">0</strong></p>
+      <button id="btn-reiniciar" class="btn">Jogar novamente</button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
