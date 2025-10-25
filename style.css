@@ -672,3 +672,28 @@ h1 {
   align-items: center;
   gap: 1rem;
 }
+/* Layout horizontal dos botões do menu */
+.menu-botoes {
+  display: flex;
+  justify-content: center;    /* centraliza os botões */
+  align-items: center;
+  gap: 15px;                  /* espaço entre eles */
+  margin-top: 20px;
+  flex-wrap: wrap;            /* quebra linha se tela for pequena */
+}
+
+.menu-botoes button {
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4a90e2;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.menu-botoes button:hover {
+  background-color: #357ab8;
+  transform: scale(1.05);
+}
