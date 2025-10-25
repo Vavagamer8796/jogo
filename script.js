@@ -1,18 +1,20 @@
+
 const defaultQuestions = [
   {
-    question: "Qual é a capital do Brasil?",
-    options: ["São Paulo", "Brasília", "Rio de Janeiro"],
-    answer: "Brasília"
+    term: "HTML",
+    definition: "Linguagem de marcação utilizada para estruturar páginas web"
   },
   {
-    question: "Quanto é 5 + 3?",
-    options: ["6", "8", "9"],
-    answer: "8"
+    term: "CSS",
+    definition: "Linguagem utilizada para estilizar elementos escritos em HTML"
   },
   {
-    question: "Qual é o maior planeta do Sistema Solar?",
-    options: ["Terra", "Júpiter", "Marte"],
-    answer: "Júpiter"
+    term: "JavaScript",
+    definition: "Linguagem de programação que permite implementar funcionalidades dinâmicas"
+  },
+  {
+    term: "DOM",
+    definition: "Interface de programação que representa documentos HTML como uma árvore de objetos"
   }
 ];
 
@@ -68,78 +70,120 @@ if (btnReiniciar) {
 }
 
 function loadQuestion() {
-  const q = questions[currentQuestion];
+  // Reseta pontuação no início
+  score = 0;
+  if (pontuacaoEl) pontuacaoEl.textContent = String(score);
   
-  if (rodadaNumEl) rodadaNumEl.textContent = String(currentQuestion + 1);
-  if (rodadasTotalEl) rodadasTotalEl.textContent = String(questions.length);
-  if (progressBar) progressBar.style.width = `${Math.round(((currentQuestion) / questions.length) * 100)}%`;
+  // Limpa feedback
+  if (feedbackEl) feedbackEl.textContent = "";
 
+  // Obtém as listas
+  const listaTermos = document.getElementById('lista-termos');
+  const listaDefinicoes = document.getElementById('lista-definicoes');
   
-  if (currentQuestion === 0) {
-    score = 0;
-    if (pontuacaoEl) pontuacaoEl.textContent = String(score);
-  }
+  // Limpa as listas
+  listaTermos.innerHTML = "";
+  listaDefinicoes.innerHTML = "";
 
-  questionEl.textContent = q.question;
-  dropZone.textContent = "Arraste a resposta aqui";
-  feedbackEl.textContent = "";
-  dropZone.classList.remove("correct", "incorrect");
-
-  optionsEl.innerHTML = "";
-  q.options.forEach(option => {
-    const div = document.createElement("div");
-    div.classList.add("option");
-    div.textContent = option;
-    div.draggable = true;
-
-    div.addEventListener("dragstart", dragStart);
-    optionsEl.appendChild(div);
+  // Cria elementos para cada termo
+  questions.forEach((q, index) => {
+    // Cria o termo
+    const termItem = document.createElement('li');
+    termItem.className = 'termo';
+    termItem.textContent = q.term;
+    termItem.setAttribute('data-term-index', index);
+    
+    // Adiciona eventos de drag and drop
+    termItem.addEventListener('dragover', handleDragOver);
+    termItem.addEventListener('dragleave', handleDragLeave);
+    termItem.addEventListener('drop', handleDrop);
+    
+    listaTermos.appendChild(termItem);
   });
+
+  // Cria e embaralha as definições
+  const definicoes = questions.map(q => q.definition);
+  shuffleArray(definicoes);
+  
+  // Adiciona as definições embaralhadas
+  definicoes.forEach(definicao => {
+    const defItem = document.createElement('li');
+    defItem.className = 'definicao';
+    defItem.textContent = definicao;
+    defItem.draggable = true;
+    defItem.addEventListener('dragstart', dragStart);
+    
+    listaDefinicoes.appendChild(defItem);
+  });
+}
+
+// Função para embaralhar array
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+function handleDragOver(event) {
+  event.preventDefault();
+  if (!event.currentTarget.classList.contains('correct')) {
+    event.currentTarget.classList.add('drag-over');
+  }
+}
+
+function handleDragLeave(event) {
+  event.currentTarget.classList.remove('drag-over');
+}
+
+function handleDrop(event) {
+  event.preventDefault();
+  const termo = event.currentTarget;
+  termo.classList.remove('drag-over');
+  
+  // Não permite soltar se já estiver correto
+  if (termo.classList.contains('correct')) {
+    return;
+  }
+  
+  const termIndex = parseInt(termo.getAttribute('data-term-index'));
+  const definicao = event.dataTransfer.getData('text');
+  
+  if (definicao === questions[termIndex].definition) {
+    termo.classList.add('correct');
+    score++;
+    if (pontuacaoEl) pontuacaoEl.textContent = String(score);
+    if (feedbackEl) {
+      feedbackEl.textContent = "✅ Correlação correta!";
+      feedbackEl.className = "feedback correct";
+    }
+  } else {
+    termo.classList.add('incorrect');
+    if (feedbackEl) {
+      feedbackEl.textContent = "❌ Tente novamente!";
+      feedbackEl.className = "feedback incorrect";
+    }
+    // Remove a classe incorrect após um tempo
+    setTimeout(() => {
+      termo.classList.remove('incorrect');
+    }, 1000);
+  }
+  
+  // Verifica se todos os termos foram correlacionados corretamente
+  const allTerms = document.querySelectorAll('.termo');
+  const allCorrect = Array.from(allTerms).every(term => 
+    term.classList.contains('correct')
+  );
+  
+  if (allCorrect) {
+    setTimeout(endQuiz, 1000);
+  }
 }
 
 function dragStart(event) {
   event.dataTransfer.setData("text", event.target.textContent);
+  event.target.classList.add('dragging');
 }
-
-dropZone.addEventListener("dragover", event => {
-  event.preventDefault();
-  dropZone.style.borderColor = "#00ff88";
-});
-
-dropZone.addEventListener("dragleave", () => {
-  dropZone.style.borderColor = "#fff";
-});
-
-dropZone.addEventListener("drop", event => {
-  event.preventDefault();
-  dropZone.style.borderColor = "#fff";
-
-  const selected = event.dataTransfer.getData("text");
-  const q = questions[currentQuestion];
-
-  if (selected === q.answer) {
-    dropZone.textContent = selected;
-    feedbackEl.textContent = "✅ Resposta correta!";
-    feedbackEl.className = "feedback correct";
-    // atualiza pontuação
-    score++;
-    if (pontuacaoEl) pontuacaoEl.textContent = String(score);
-  } else {
-    dropZone.textContent = selected;
-    feedbackEl.textContent = "❌ Resposta errada!";
-    feedbackEl.className = "feedback incorrect";
-  }
-
-  
-  setTimeout(() => {
-    currentQuestion++;
-    if (currentQuestion < questions.length) {
-      loadQuestion();
-    } else {
-      endQuiz();
-    }
-  }, 1000);
-});
 
 function endQuiz() {
   
