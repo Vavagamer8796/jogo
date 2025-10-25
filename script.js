@@ -120,19 +120,29 @@ const btnReiniciar = document.getElementById("btn-reiniciar");
 // Quiz padrão (pré-carregado)
 const defaultRounds = [
   [
-    { termo: "HTML", definicao: "Linguagem de marcação usada para estruturar páginas da web" },
-    { termo: "CSS", definicao: "Folhas de estilo usadas para definir o design de páginas web" },
-    { termo: "JavaScript", definicao: "Linguagem de programação usada para interatividade" }
+    { termo: "HTML", definicao: "Linguagem de marcação utilizada para estruturar páginas web" },
+    { termo: "CSS", definicao: "Linguagem utilizada para estilizar elementos escritos em HTML" },
+    { termo: "JavaScript", definicao: "Linguagem de programação que permite implementar funcionalidades dinâmicas" }
   ],
   [
-    { termo: "DOM", definicao: "Modelo de Objeto de Documento, estrutura da página na memória" },
-    { termo: "API", definicao: "Interface que permite comunicação entre sistemas" },
-    { termo: "JSON", definicao: "Formato leve para troca de dados" }
+    { termo: "Front-end", definicao: "Parte do desenvolvimento responsável pela interface e interação com o usuário" },
+    { termo: "Back-end", definicao: "Parte do sistema que lida com o servidor, banco de dados e regras de negócio" },
+    { termo: "Responsividade", definicao: "Capacidade de um site se adaptar a diferentes tamanhos de tela e dispositivos" }
   ],
   [
-    { termo: "Flexbox", definicao: "Modelo de layout para alinhar elementos facilmente" },
-    { termo: "Grid", definicao: "Sistema de layout bidimensional do CSS" },
-    { termo: "Media Query", definicao: "Permite adaptar o layout a diferentes tamanhos de tela" }
+    { termo: "classList", definicao: "Propriedade usada para adicionar, remover ou alternar classes CSS em um elemento" },
+    { termo: "innerHTML", definicao: "Propriedade que permite acessar ou modificar o conteúdo HTML de um elemento" },
+    { termo: "DOM", definicao: "Interface que representa a estrutura de um documento HTML como uma árvore de objetos" }
+  ],
+  [
+    { termo: "Layout", definicao: "Organização visual dos elementos de uma página web" },
+    { termo: "CSS", definicao: "Linguagem usada para estilizar e formatar elementos HTML" },
+    { termo: "Element", definicao: "Objeto do DOM que representa um componente HTML na página" }
+  ],
+  [
+    { termo: "JavaScript", definicao: "Linguagem de programação usada para criar interatividade e dinamismo nas páginas web" },
+    { termo: "Evento", definicao: "Ação detectada pelo navegador, como um clique ou digitação" },
+    { termo: "Função", definicao: "Bloco de código que executa uma tarefa específica quando chamado" }
   ]
 ];
 
