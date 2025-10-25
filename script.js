@@ -301,21 +301,29 @@ btnAddPair.addEventListener("click", () => {
   }
 });
 
-btnNextRound.addEventListener("click", () => {
-  customQuiz.push([...currentPairs]);
-  currentPairs = [];
-  atualizarPares();
+  btnNextRound.addEventListener("click", () => {
+    // Salva a rodada atual
+    customQuiz.push([...currentPairs]);
+    currentPairs = [];
+    atualizarPares();
 
-  if (customQuiz.length >= parseInt(numRoundsInput.value)) {
-    btnNextRound.style.display = "none";
-    btnSalvarQuiz.style.display = "inline-block";
-    alert("Todas as rodadas criadas! Clique em 'Finalizar Quiz'.");
-  } else {
-    updateRoundDisplay();
-    btnAddPair.style.display = "inline-block";
-    btnNextRound.style.display = "none";
-  }
+    const totalRodadas = parseInt(numRoundsInput.value);
+    const rodadaAtual = customQuiz.length;
+
+    if (rodadaAtual < totalRodadas) {
+      // Ainda há rodadas a criar
+      updateRoundDisplay();
+      btnAddPair.style.display = "inline-block";
+      btnNextRound.style.display = "none";
+    } else {
+      // Todas as rodadas foram criadas
+      btnAddPair.style.display = "none";
+      btnNextRound.style.display = "none";
+      btnSalvarQuiz.style.display = "inline-block";
+      alert("✅ Todas as rodadas foram criadas! Clique em 'Finalizar Quiz' para começar.");
+    }
 });
+
 
 btnSalvarQuiz.addEventListener("click", () => {
   rounds = [...customQuiz];
