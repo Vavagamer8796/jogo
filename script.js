@@ -1,3 +1,83 @@
+// ---- SISTEMA DE LOGIN E CADASTRO ----
+
+// Alternar telas
+function mostrarTela(id) {
+  document.querySelectorAll(".tela").forEach(t => t.classList.remove("ativa"));
+  document.getElementById(id).classList.add("ativa");
+}
+
+// Referências
+const btnLogin = document.getElementById("btn-login");
+const btnCadastro = document.getElementById("btn-cadastro");
+const btnSobre = document.getElementById("btn-sobre");
+const btnVoltarInicio1 = document.getElementById("btn-voltar-inicio1");
+const btnVoltarInicio2 = document.getElementById("btn-voltar-inicio2");
+const btnVoltarSobre = document.getElementById("btn-voltar-sobre");
+const btnSalvarCadastro = document.getElementById("btn-salvar-cadastro");
+const btnEntrar = document.getElementById("btn-entrar");
+const linkEsqueci = document.getElementById("link-esqueci");
+
+// Ações de navegação
+btnLogin.addEventListener("click", () => mostrarTela("tela-login"));
+btnCadastro.addEventListener("click", () => mostrarTela("tela-cadastro"));
+btnSobre.addEventListener("click", () => mostrarTela("tela-sobre"));
+btnVoltarInicio1.addEventListener("click", () => mostrarTela("tela-inicial"));
+btnVoltarInicio2.addEventListener("click", () => mostrarTela("tela-inicial"));
+btnVoltarSobre.addEventListener("click", () => mostrarTela("tela-inicial"));
+
+// Cadastrar usuário
+btnSalvarCadastro.addEventListener("click", () => {
+  const nome = document.getElementById("cad-nome").value.trim();
+  const email = document.getElementById("cad-email").value.trim();
+  const senha = document.getElementById("cad-senha").value.trim();
+
+  if (!nome || !email || !senha) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  const user = { nome, email, senha };
+  localStorage.setItem("quizUser", JSON.stringify(user));
+  alert("Cadastro realizado com sucesso!");
+  mostrarTela("tela-login");
+});
+
+// Login
+btnEntrar.addEventListener("click", () => {
+  const email = document.getElementById("login-email").value.trim();
+  const senha = document.getElementById("login-senha").value.trim();
+  const user = JSON.parse(localStorage.getItem("quizUser"));
+
+  if (!user) {
+    alert("Nenhum usuário cadastrado!");
+    return;
+  }
+
+  if (user.email === email && user.senha === senha) {
+    alert(`Bem-vindo, ${user.nome}!`);
+    mostrarTela("tela-jogo");
+    // reiniciar jogo
+    if (typeof loadQuestion === "function") {
+      score = 0;
+      currentRound = 1;
+      questions = [...rounds[0]];
+      loadQuestion();
+    }
+  } else {
+    alert("E-mail ou senha incorretos!");
+  }
+});
+
+// Esqueci minha senha
+linkEsqueci.addEventListener("click", (e) => {
+  e.preventDefault();
+  const user = JSON.parse(localStorage.getItem("quizUser"));
+  if (user) {
+    alert(`Sua senha é: ${user.senha}`);
+  } else {
+    alert("Nenhum usuário cadastrado ainda!");
+  }
+});
 
 const defaultRounds = [
   [

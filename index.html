@@ -7,15 +7,63 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- TELA INICIAL -->
   <section id="tela-inicial" class="tela ativa">
     <div class="card">
       <h1>QUIZ</h1>
       <p class="sub">Arrastar e Soltar (HTML • CSS • DOM)</p>
-      <button id="btn-iniciar" class="btn primario">Iniciar Quiz</button>
-      <button id="btn-criar-quiz" class="btn secundario">Criar Quiz</button>
+      <button id="btn-login" class="btn primario">Login</button>
+      <button id="btn-cadastro" class="btn secundario">Cadastro</button>
+      <button id="btn-sobre" class="btn">Sobre o Jogo</button>
     </div>
   </section>
 
+  <!-- TELA DE CADASTRO -->
+  <section id="tela-cadastro" class="tela">
+    <div class="card">
+      <h2>Cadastro</h2>
+      <div class="quiz-create-form">
+        <input type="text" id="cad-nome" placeholder="Nome completo" required>
+        <input type="email" id="cad-email" placeholder="E-mail" required>
+        <input type="password" id="cad-senha" placeholder="Senha" required>
+        <div class="quiz-buttons">
+          <button id="btn-salvar-cadastro" class="btn primario">Cadastrar</button>
+          <button id="btn-voltar-inicio1" class="btn secundario">Voltar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TELA DE LOGIN -->
+  <section id="tela-login" class="tela">
+    <div class="card">
+      <h2>Login</h2>
+      <div class="quiz-create-form">
+        <input type="email" id="login-email" placeholder="E-mail" required>
+        <input type="password" id="login-senha" placeholder="Senha" required>
+        <a href="#" id="link-esqueci" class="sub">Esqueci minha senha</a>
+        <div class="quiz-buttons">
+          <button id="btn-entrar" class="btn primario">Entrar</button>
+          <button id="btn-voltar-inicio2" class="btn secundario">Voltar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TELA SOBRE O JOGO -->
+  <section id="tela-sobre" class="tela">
+    <div class="card">
+      <h2>Sobre o Jogo</h2>
+      <p class="sub">
+        Este quiz tem como objetivo testar seus conhecimentos sobre HTML, CSS e DOM,
+        por meio de um jogo interativo de arrastar e soltar. Crie seus próprios quizzes
+        ou jogue o quiz padrão e desafie seus amigos!
+      </p>
+      <button id="btn-voltar-sobre" class="btn">Voltar</button>
+    </div>
+  </section>
+
+  <!-- TELA DE CRIAÇÃO DE QUIZ (original) -->
   <section id="tela-criar-quiz" class="tela">
     <div class="card">
       <h2>Criar Novo Quiz</h2>
@@ -48,15 +96,14 @@
     </div>
   </section>
 
+  <!-- TELA DO JOGO -->
   <section id="tela-jogo" class="tela">
     <header class="topbar">
       <div class="info">
         <span id="etapa">Rodada <strong id="rodada-num">1</strong> de <strong id="rodadas-total">5</strong></span>
         <span id="placar">Pontuação: <strong id="pontuacao">0</strong></span>
       </div>
-      <div class="progresso">
-        <div id="progress-bar"></div>
-      </div>
+      <div class="progresso"><div id="progress-bar"></div></div>
     </header>
 
     <main class="container">
@@ -70,10 +117,9 @@
       </div>
     </main>
     <div id="feedback" class="feedback"></div>
-
-  
   </section>
 
+  <!-- TELA FINAL -->
   <section id="tela-final" class="tela">
     <div class="card">
       <h2>Parabéns!</h2>
