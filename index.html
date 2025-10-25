@@ -20,21 +20,29 @@
     <div class="card">
       <h2>Criar Novo Quiz</h2>
       <div id="form-criar-quiz">
-        <div class="quiz-question-form">
-          <input type="text" class="question-input" placeholder="Digite a pergunta" required>
-          <div class="options-container">
-            <input type="text" class="option-input" placeholder="Opção 1" required>
-            <input type="text" class="option-input" placeholder="Opção 2" required>
-            <input type="text" class="option-input" placeholder="Opção 3" required>
+        <div class="quiz-create-form">
+          <div class="config-quiz">
+            <div class="input-group">
+              <label for="num-rounds">Número de Rodadas</label>
+              <input type="number" id="num-rounds" min="1" max="10" value="3" required>
+              <span class="input-help">Escolha de 1 a 10 rodadas</span>
+            </div>
+            <div class="input-group">
+              <label for="pairs-per-round">Termos por Rodada</label>
+              <input type="number" id="pairs-per-round" min="1" max="5" value="3" required>
+              <span class="input-help">Escolha de 1 a 5 termos</span>
+            </div>
           </div>
-          <select class="answer-select" required>
-            <option value="">Selecione a resposta correta</option>
-          </select>
-        </div>
-        <div class="quiz-buttons">
-          <button id="btn-add-question" class="btn">Adicionar Pergunta</button>
-          <button id="btn-salvar-quiz" class="btn primario">Salvar Quiz</button>
-          <button id="btn-voltar" class="btn secundario">Voltar</button>
+          <div id="round-indicator">Rodada 1</div>
+          <input type="text" class="term-input" placeholder="Digite o termo (ex: HTML)" required>
+          <input type="text" class="definition-input" placeholder="Digite a definição correspondente" required>
+          <div class="quiz-buttons">
+            <button id="btn-add-pair" class="btn">Adicionar Par</button>
+            <button id="btn-next-round" class="btn" style="display: none;">Próxima Rodada</button>
+            <button id="btn-salvar-quiz" class="btn primario" style="display: none;">Finalizar Quiz</button>
+            <button id="btn-voltar" class="btn secundario">Voltar</button>
+          </div>
+          <div id="current-pairs" class="current-pairs"></div>
         </div>
       </div>
     </div>
