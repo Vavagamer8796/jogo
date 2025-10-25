@@ -230,6 +230,22 @@ function addDragAndDrop() {
         feedback("Errado! 😢", false);
       }
 
+      if (dragged.textContent === termoCorreto.definicao) {
+        // ✅ Mantém verde (acerto permanente)
+        termo.classList.add("correct");
+        score += 10;
+        dragged.remove();
+        feedback("Correto! 🎉", true);
+        termo.classList.remove("drag-over"); // garante que a borda azul desapareça
+      } else {
+        // ❌ Mostra vermelho por 1s e volta ao normal
+        termo.classList.add("incorrect");
+        feedback("Errado! 😢", false);
+        setTimeout(() => termo.classList.remove("incorrect"), 1000);
+        termo.classList.remove("drag-over");
+      }
+
+
       atualizarUI();
 
       if (listaDefinicoes.children.length === 0) {
