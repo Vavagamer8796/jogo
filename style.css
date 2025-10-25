@@ -659,3 +659,16 @@ h1 {
   line-height: 1.6;
   text-align: justify;
 }
+
+#tela-menu h2 {
+  background-image: linear-gradient(120deg, #667eea, #764ba2);
+  color: transparent;
+  background-clip: text;
+}
+
+#tela-menu .quiz-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
