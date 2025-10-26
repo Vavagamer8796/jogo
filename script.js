@@ -7,7 +7,7 @@ function mostrarTela(id) {
   if (el) el.classList.add("ativa");
 }
 
-// Referências principais (só pega se existir)
+// Referências principais 
 const btnLogin = document.getElementById("btn-login");
 const btnCadastro = document.getElementById("btn-cadastro");
 const btnSobre = document.getElementById("btn-sobre");
@@ -125,7 +125,6 @@ const feedbackDiv = document.getElementById("feedback");
 const pontuacaoFinal = document.getElementById("pontuacao-final");
 const btnReiniciar = document.getElementById("btn-reiniciar");
 
-// Aqui usei as chaves em português conforme seu código espera
 const defaultRounds = [
   [
     { termo: "HTML", definicao: "Linguagem de marcação utilizada para estruturar páginas web" },
@@ -172,7 +171,7 @@ function loadQuestion() {
   if (listaDefinicoes) listaDefinicoes.innerHTML = "";
     if (feedbackDiv) {
     feedbackDiv.textContent = "";
-    feedbackDiv.className = "feedback hidden"; // 🔹 esconde a barra antiga
+    feedbackDiv.className = "feedback hidden"; 
   }
 
 
@@ -307,7 +306,7 @@ function updateButtonsForCreate() {
   const rodadaAtual = customQuiz.length; // já salvas
   const paresAtuais = currentPairs.length;
 
-  // Se já temos a rodada completa (paresAtuais >= paresPorRodada)
+  
   if (paresAtuais >= paresPorRodada) {
     // Se ainda precisamos criar mais rodadas além da atual
     if (rodadaAtual + 1 < totalRodadas) {

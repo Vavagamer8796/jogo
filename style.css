@@ -62,11 +62,15 @@ h1 {
 }
 
 /* Botões */
-.btn {
+/* ==== ESTILO UNIVERSAL DOS BOTÕES ==== */
+.btn,
+button,
+#tela-menu .quiz-buttons button,
+.menu-botoes button {
   padding: 12px 24px;
   border: none;
   border-radius: 50px;
-  background: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   font-size: 1rem;
   font-weight: 600;
@@ -74,24 +78,16 @@ h1 {
   transition: all 0.3s ease;
   margin: 0.5rem;
   min-width: 150px;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-}
-
-.btn.primario {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.btn.secundario {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.btn.secundario:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 10px 24px rgba(255, 122, 122, 0.22);
+.btn:hover,
+button:hover,
+#tela-menu .quiz-buttons button:hover,
+.menu-botoes button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.5);
+  opacity: 0.95;
 }
 
 /* Formulário de criação de quiz */
