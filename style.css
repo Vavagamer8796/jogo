@@ -672,28 +672,30 @@ h1 {
   align-items: center;
   gap: 1rem;
 }
-/* Layout horizontal dos botões do menu */
-.menu-botoes {
-  display: flex;
-  justify-content: center;    /* centraliza os botões */
+/* ===== Forçar botões lado a lado apenas na tela de menu (pós-login) ===== */
+#tela-menu .quiz-buttons {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
   align-items: center;
-  gap: 15px;                  /* espaço entre eles */
+  gap: 20px;
+  flex-wrap: wrap;
   margin-top: 20px;
-  flex-wrap: wrap;            /* quebra linha se tela for pequena */
 }
 
-.menu-botoes button {
-  padding: 12px 24px;
-  font-size: 16px;
+#tela-menu .quiz-buttons button {
+  padding: 12px 30px;
   border: none;
-  border-radius: 8px;
-  background-color: #4a90e2;
-  color: white;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #7a5af5, #4facfe);
+  color: #fff;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 15px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-.menu-botoes button:hover {
-  background-color: #357ab8;
-  transform: scale(1.05);
+#tela-menu .quiz-buttons button:hover {
+  transform: scale(1.08);
+  opacity: 0.9;
 }
