@@ -6,25 +6,59 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  padding: 0;
 }
 
 /* Estilos das telas */
 .tela {
-  display: none;
-  width: 100%;
+  display: none; /* todas ficam escondidas */
+  width: 90%;
   max-width: 800px;
   margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .tela {
+    width: 95%;
+    padding: 10px;
+  }
 }
 
 .tela.ativa {
-  display: block;
+  display: flex; /* só a ativa aparece */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* centraliza verticalmente */
   animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -826,3 +860,4 @@ button:hover,
     gap: 1rem;
   }
 }
+
