@@ -212,6 +212,7 @@ function addDragAndDrop() {
   const definicoes = document.querySelectorAll(".definicao");
   const termos = document.querySelectorAll(".termo");
 
+  // === 🖱️ SUPORTE A DESKTOP (mouse) ===
   definicoes.forEach(def => {
     def.addEventListener("dragstart", () => def.classList.add("dragging"));
     def.addEventListener("dragend", () => def.classList.remove("dragging"));
@@ -228,34 +229,64 @@ function addDragAndDrop() {
     termo.addEventListener("drop", () => {
       const dragged = document.querySelector(".dragging");
       if (!dragged) return;
+      validarDrop(termo, dragged);
+    });
+  });
 
-      const rodadaAtual = rounds[currentRound - 1];
-      const termoCorreto = rodadaAtual.find(i => i.termo === termo.dataset.termo);
+  // === 📱 SUPORTE A TOUCHSCREEN (mobile) ===
+  definicoes.forEach(def => {
+    def.addEventListener("touchstart", (e) => {
+      def.classList.add("dragging");
+      def.dataset.touching = "true";
+      def.startY = e.touches[0].clientY;
+      def.startX = e.touches[0].clientX;
+    });
 
-      if (!termoCorreto) return;
+    def.addEventListener("touchmove", (e) => {
+      const touch = e.touches[0];
+      const el = document.elementFromPoint(touch.clientX, touch.clientY);
+      const termo = el?.closest(".termo");
+      termos.forEach(t => t.classList.remove("drag-over"));
+      if (termo) termo.classList.add("drag-over");
+    });
 
-      if (dragged.textContent === termoCorreto.definicao) {
-        termo.classList.add("correct");            // verde permanente
-        score += 10;
-        dragged.remove();
-        feedback("Correto! 🎉", true);
-        termo.classList.remove("drag-over");
-      } else {
-        termo.classList.add("incorrect");         // vermelho temporário
-        feedback("Errado! 😢", false);
-        termo.classList.remove("drag-over");
-        setTimeout(() => termo.classList.remove("incorrect"), 1000);
-      }
-
-      atualizarUI();
-
-      // se não há mais definições, próxima rodada ou fim
-      if (!listaDefinicoes || listaDefinicoes.children.length === 0) {
-        setTimeout(proximaRodada, 1200);
-      }
+    def.addEventListener("touchend", (e) => {
+      def.classList.remove("dragging");
+      def.dataset.touching = "false";
+      const touch = e.changedTouches[0];
+      const el = document.elementFromPoint(touch.clientX, touch.clientY);
+      const termo = el?.closest(".termo");
+      termos.forEach(t => t.classList.remove("drag-over"));
+      if (termo) validarDrop(termo, def);
     });
   });
 }
+
+// === Função para validar o drop (usada em ambos os modos)
+function validarDrop(termo, dragged) {
+  const rodadaAtual = rounds[currentRound - 1];
+  const termoCorreto = rodadaAtual.find(i => i.termo === termo.dataset.termo);
+  if (!termoCorreto) return;
+
+  if (dragged.textContent === termoCorreto.definicao) {
+    termo.classList.add("correct");
+    score += 10;
+    dragged.remove();
+    feedback("Correto! 🎉", true);
+  } else {
+    termo.classList.add("incorrect");
+    feedback("Errado! 😢", false);
+    setTimeout(() => termo.classList.remove("incorrect"), 1000);
+  }
+
+  atualizarUI();
+
+  if (listaDefinicoes.children.length === 0) {
+    setTimeout(proximaRodada, 1200);
+  }
+}
+
+
 
 function feedback(msg, correto) {
   if (!feedbackDiv) return;
