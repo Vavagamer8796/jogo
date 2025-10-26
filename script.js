@@ -170,7 +170,11 @@ function loadQuestion() {
   const rodadaAtual = rounds[currentRound - 1];
   if (listaTermos) listaTermos.innerHTML = "";
   if (listaDefinicoes) listaDefinicoes.innerHTML = "";
-  if (feedbackDiv) feedbackDiv.textContent = "";
+    if (feedbackDiv) {
+    feedbackDiv.textContent = "";
+    feedbackDiv.className = "feedback hidden"; // 🔹 esconde a barra antiga
+  }
+
 
   if (rodadaNum) rodadaNum.textContent = currentRound;
   if (rodadasTotal) rodadasTotal.textContent = totalRounds;

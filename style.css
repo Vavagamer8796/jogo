@@ -699,3 +699,134 @@ h1 {
   transform: scale(1.08);
   opacity: 0.9;
 }
+
+.feedback.hidden {
+  display: none;
+}
+ /* 🌈 ==== RESPONSIVIDADE GERAL ==== */
+
+/* Dispositivos grandes (monitores até 1200px) */
+@media (max-width: 1200px) {
+  .card {
+    max-width: 90%;
+    padding: 2rem;
+  }
+  .container {
+    gap: 1.5rem;
+  }
+}
+
+/* Tablets (até 992px) */
+@media (max-width: 992px) {
+  body {
+    padding: 15px;
+  }
+  .card {
+    padding: 1.8rem;
+  }
+  .config-quiz {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .input-group {
+    min-width: 100%;
+  }
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .col {
+    width: 100%;
+  }
+  #tela-menu .quiz-buttons {
+    flex-direction: column !important;
+    gap: 1rem;
+  }
+}
+
+/* Celulares (até 768px) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.4rem;
+  }
+  .btn {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 10px 16px;
+  }
+  .config-quiz {
+    padding: 1.5rem;
+  }
+  .input-group input[type="number"] {
+    width: 80px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+  .container {
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+  .termo, .definicao {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+  .info {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}
+
+/* Smartphones pequenos (até 480px) */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  .card {
+    border-radius: 15px;
+    padding: 1rem;
+  }
+  h1 {
+    font-size: 1.6rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+  .sub {
+    font-size: 0.95rem;
+  }
+  .btn {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+  .term-input,
+  .definition-input {
+    font-size: 0.9rem;
+  }
+  #progress-bar {
+    height: 6px;
+  }
+  .grid-termos, .grid-definicoes {
+    grid-template-columns: 1fr;
+  }
+  .feedback {
+    font-size: 0.9rem;
+  }
+}
+
+/* Modo paisagem em mobile (horizontal) */
+@media (max-height: 480px) and (orientation: landscape) {
+  body {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .card {
+    margin-top: 1rem;
+  }
+  .container {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
