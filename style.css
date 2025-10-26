@@ -6,59 +6,25 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-html, body {
-  width: 100%;
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-}
-
 body {
-  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-  padding: 0;
+  padding: 20px;
 }
 
 /* Estilos das telas */
 .tela {
-  display: none; /* todas ficam escondidas */
-  width: 90%;
+  display: none;
+  width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  align-items: center;
-  justify-content: center;
-}
-
-@media (max-width: 768px) {
-  .tela {
-    width: 95%;
-    padding: 10px;
-  }
 }
 
 .tela.ativa {
-  display: flex; /* só a ativa aparece */
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh; /* centraliza verticalmente */
+  display: block;
   animation: fadeIn 0.5s ease-in-out;
 }
 
