@@ -23,7 +23,7 @@ body {
   margin: 0 auto;
 }
 
-/* ✅ Corrigido: evita layout quebrado e textos colados */
+/*Evita layout quebrado e textos colados */
 .tela.ativa {
   display: block;
   animation: fadeIn 0.5s ease-in-out;
@@ -97,121 +97,200 @@ button:hover,
 
 /* Inputs (Login, Cadastro etc.) */
 #tela-cadastro input,
-#tela-login input {
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: 10px;
-  border: 1px solid #d0d0ff;
-  margin-bottom: 12px;
-  font-size: 1rem;
-  text-align: left;
+#tela-cadastro input,
+#tela-login input,
+#tela-criar-quiz input[type="text"], /* Incluindo inputs de texto da criação */
+#tela-criar-quiz input[type="number"] { /* Incluindo inputs de número da criação */
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid #d0d0ff;
+    margin-bottom: 12px;
+    font-size: 1rem;
+    text-align: left;
 }
 
 #tela-cadastro input:focus,
-#tela-login input:focus {
-  border-color: #667eea;
-  outline: none;
-  box-shadow: 0 0 6px rgba(102, 126, 234, 0.4);
+#tela-login input:focus,
+#tela-criar-quiz input:focus { /* Adicionado foco para criar quiz */
+    border-color: #667eea;
+    outline: none;
+    box-shadow: 0 0 6px rgba(102, 126, 234, 0.4);
 }
 
-/* ==== CORREÇÃO DE TEXTOS COLADOS E ESPAÇAMENTO ==== */
-h1, h2, p, label, .sub, .info {
-  margin-bottom: 1rem;
-  line-height: 1.5;
+/* ==== TELA SOBRE O JOGO - NOVOS ESTILOS PARA AUTORES E AVATARES ==== */
+.authors-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px; /* Espaçamento maior entre os membros */
+    margin: 2.5rem 0;
 }
 
-/* Barra superior (Rodada/Pontuação) */
-.info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  text-align: left;
-  margin-bottom: 1rem;
+.author-item {
+    text-align: center;
+    max-width: 100px;
 }
 
-.progresso {
-  height: 8px;
-  background: #e2e8f0;
-  border-radius: 4px;
-  overflow: hidden;
+.author-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 8px;
+    border: 3px solid #764ba2; /* Cor de destaque */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#progress-bar {
-  height: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  transition: width 0.3s ease;
+.author-item p {
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 0.95rem;
+    margin: 0;
 }
 
-/* Container principal do jogo */
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin: 0 auto;
-  max-width: 1200px;
-  align-items: start;
-  justify-content: center;
+.game-date {
+    font-size: 0.9rem;
+    color: #a0aec0;
+    margin-top: 2rem;
+    display: block;
 }
 
-.col {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 1.5rem;
-  border-radius: 15px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+/* ==== ESTILOS PARA TELA CRIAÇÃO DE QUIZ ==== */
+
+.config-quiz {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 1.5rem;
+    justify-content: center;
 }
 
-.col h2 {
-  color: #4a5568;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 600;
+.input-group {
+    text-align: left;
+}
+.input-group label {
+    display: block;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+.input-group input[type="number"] { /* Específico para campos de número */
+    width: 150px; 
+    text-align: center;
+}
+.input-help {
+    display: block;
+    font-size: 0.8rem;
+    color: #a0aec0;
+    margin-top: -5px;
 }
 
+#round-indicator {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #764ba2;
+    margin-bottom: 1rem;
+    padding: 8px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.current-pairs {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    text-align: left;
+    background: #f7fafc;
+}
+.current-pairs p {
+    margin-bottom: 5px;
+    padding: 5px 0;
+    border-bottom: 1px dashed #edf2f7;
+    font-size: 0.95rem;
+}
+.current-pairs strong {
+    color: #2c5282;
+}
 /* Termos e Definições */
 .termo, .definicao {
-  padding: 1rem;
-  background: #f7fafc;
-  border: 2px solid #e2e8f0;
-  border-radius: 10px;
-  margin-bottom: 0.5rem;
-  transition: all 0.3s ease;
-  min-height: 60px;
-  display: flex;
-  align-items: center;
+    padding: 1rem;
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    /* Adicionado para que a definição possa aceitar o drop no espaço em branco */
+    justify-content: center;
+    text-align: center;
+    flex-direction: column; 
+    line-height: 1.2;
 }
 
 .termo {
-  background: #ebf8ff;
-  border-color: #90cdf4;
-  font-weight: 600;
-  color: #2c5282;
+    background: #ebf8ff;
+    border-color: #90cdf4;
+    font-weight: 600;
+    color: #2c5282;
+    cursor: grab; /* Indica que é arrastável */
+}
+
+.termo.dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+    cursor: grabbing;
 }
 
 .definicao {
-  background: #f0fff4;
-  border-color: #9ae6b4;
-  color: #276749;
-  cursor: grab;
+    background: #f0fff4;
+    border-color: #9ae6b4;
+    color: #276749;
+    cursor: default; /* Definições não são arrastáveis */
+    transition: background-color 0.2s, border-color 0.2s;
+    font-size: 0.9rem; /* Para caber o termo + definição */
+}
+.definicao.drag-over {
+    background: #ccfceb; /* Cor mais clara para indicar drop */
+    border-color: #10b981;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
 }
 
-.definicao.dragging {
-  opacity: 0.5;
-  cursor: grabbing;
+/* ESTILOS DE ACERTO/ERRO NO DROP */
+.definicao.matched {
+    cursor: not-allowed; /* Não pode mais dropar */
+    font-weight: bold;
+    padding: 0.8rem;
+    min-height: 80px; /* Aumenta um pouco para caber 2 linhas */
 }
 
-/* Correto / Incorreto */
-.termo.correct {
-  background: #c6f6d5;
-  border-color: #48bb78;
-  color: #2f855a;
+.definicao.matched strong {
+    font-size: 1.1rem; /* Termo em destaque */
+    color: #4a5568;
+    margin-bottom: 0.2rem;
 }
 
-.termo.incorrect {
-  background: #fed7d7;
-  border-color: #f56565;
-  color: #c53030;
+.definicao.correct {
+    background: #90f4a8; /* Fundo verde mais escuro para acerto */
+    border-color: #48bb78;
+    color: #2f855a;
+}
+
+.definicao.incorrect {
+    background: #f59696; /* Fundo vermelho mais escuro para erro */
+    border-color: #f56565;
+    color: #c53030;
+}
+
+/* Estilos para a pontuação animada */
+#pontuacao.animate {
+    transform: scale(1.2);
+    color: #667eea;
+    font-weight: bold;
 }
 
 /* === Responsividade === */
