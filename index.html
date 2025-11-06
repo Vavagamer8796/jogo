@@ -1,148 +1,163 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quiz: Arrastar e Soltar</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz: Arrastar e Soltar</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- TELA INICIAL -->
-  <section id="tela-inicial" class="tela ativa">
-    <div class="card">
-      <h1>QUIZ</h1>
-      <p class="sub">Arrastar e Soltar (HTML • CSS • DOM)</p>
-      <button id="btn-login" class="btn primario">Login</button>
-      <button id="btn-cadastro" class="btn secundario">Cadastro</button>
-      <button id="btn-sobre" class="btn">Sobre o Jogo</button>
-    </div>
-  </section>
-
-  <!-- TELA DE CADASTRO -->
-  <section id="tela-cadastro" class="tela">
-    <div class="card">
-      <h2>Cadastro</h2>
-      <div class="quiz-create-form">
-        <input type="text" id="cad-nome" placeholder="Nome completo" required>
-        <input type="email" id="cad-email" placeholder="E-mail" required>
-        <input type="password" id="cad-senha" placeholder="Senha" required>
-        <div class="quiz-buttons">
-          <button id="btn-salvar-cadastro" class="btn primario">Cadastrar</button>
-          <button id="btn-voltar-inicio1" class="btn secundario">Voltar</button>
+    <section id="tela-inicial" class="tela ativa">
+        <div class="card">
+            <h1>QUIZ</h1>
+            <p class="sub">Arrastar e Soltar (HTML • CSS • DOM)</p>
+            <button id="btn-login" class="btn primario">Login</button>
+            <button id="btn-cadastro" class="btn secundario">Cadastro</button>
+            <button id="btn-sobre" class="btn">Sobre o Jogo</button>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- TELA DE LOGIN -->
-  <section id="tela-login" class="tela">
-    <div class="card">
-      <h2>Login</h2>
-      <div class="quiz-create-form">
-        <input type="email" id="login-email" placeholder="E-mail" required>
-        <input type="password" id="login-senha" placeholder="Senha" required>
-        <a href="#" id="link-esqueci" class="sub">Esqueci minha senha</a>
-        <div class="quiz-buttons">
-          <button id="btn-entrar" class="btn primario">Entrar</button>
-          <button id="btn-voltar-inicio2" class="btn secundario">Voltar</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- NOVA TELA DE MENU PÓS-LOGIN -->
-  <section id="tela-menu" class="tela">
-    <div class="card">
-      <h2>Bem-vindo!</h2>
-      <p class="sub">Escolha o que deseja fazer:</p>
-      <div class="quiz-buttons">
-        <button id="btn-iniciar" class="btn primario">Iniciar Quiz</button>
-        <button id="btn-criar-quiz" class="btn secundario">Criar Meu Próprio Quiz</button>
-        <button id="btn-sair" class="btn">Sair</button>
-      </div>
-    </div>
-  </section>
-  
-
-  <!-- TELA SOBRE O JOGO -->
-  <section id="tela-sobre" class="tela">
-    <div class="card">
-      <h2>Sobre o Jogo</h2>
-      <p class="sub">
-        Este quiz testa seus conhecimentos sobre HTML, CSS e DOM
-        em um jogo interativo de arrastar e soltar. Você pode jogar
-        o quiz padrão ou criar o seu próprio!
-      </p>
-      <button id="btn-voltar-sobre" class="btn">Voltar</button>
-    </div>
-  </section>
-
-  <!-- TELA DE CRIAÇÃO DE QUIZ -->
-  <section id="tela-criar-quiz" class="tela">
-    <div class="card">
-      <h2>Criar Novo Quiz</h2>
-      <div id="form-criar-quiz">
-        <div class="quiz-create-form">
-          <div class="config-quiz">
-            <div class="input-group">
-              <label for="num-rounds">Número de Rodadas</label>
-              <input type="number" id="num-rounds" min="1" max="10" value="3" required>
-              <span class="input-help">Escolha de 1 a 10 rodadas</span>
+    <section id="tela-cadastro" class="tela">
+        <div class="card">
+            <h2>Cadastro</h2>
+            <div class="quiz-create-form">
+                <input type="text" id="cad-nome" placeholder="Nome completo" required>
+                <input type="email" id="cad-email" placeholder="E-mail" required>
+                <input type="password" id="cad-senha" placeholder="Senha" required>
+                <div class="quiz-buttons">
+                    <button id="btn-salvar-cadastro" class="btn primario">Cadastrar</button>
+                    <button id="btn-voltar-inicio1" class="btn secondary">Voltar</button>
+                </div>
             </div>
-            <div class="input-group">
-              <label for="pairs-per-round">Termos por Rodada</label>
-              <input type="number" id="pairs-per-round" min="1" max="5" value="3" required>
-              <span class="input-help">Escolha de 1 a 5 termos</span>
-            </div>
-          </div>
-          <div id="round-indicator">Rodada 1</div>
-          <input type="text" class="term-input" placeholder="Digite o termo (ex: HTML)" required>
-          <input type="text" class="definition-input" placeholder="Digite a definição correspondente" required>
-          <div class="quiz-buttons">
-            <button id="btn-add-pair" class="btn">Adicionar Par</button>
-            <button id="btn-next-round" class="btn" style="display: none;">Próxima Rodada</button>
-            <button id="btn-salvar-quiz" class="btn primario" style="display: none;">Finalizar Quiz</button>
-            <button id="btn-voltar" class="btn secundario">Voltar</button>
-          </div>
-          <div id="current-pairs" class="current-pairs"></div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- TELA DO JOGO -->
-  <section id="tela-jogo" class="tela">
-    <header class="topbar">
-      <div class="info">
-        <span id="etapa">Rodada <strong id="rodada-num">1</strong> de <strong id="rodadas-total">5</strong></span>
-        <span id="placar">Pontuação: <strong id="pontuacao">0</strong></span>
-      </div>
-      <div class="progresso"><div id="progress-bar"></div></div>
-    </header>
+    <section id="tela-login" class="tela">
+        <div class="card">
+            <h2>Login</h2>
+            <div class="quiz-create-form">
+                <input type="email" id="login-email" placeholder="E-mail" required>
+                <input type="password" id="login-senha" placeholder="Senha" required>
+                <a href="#" id="link-esqueci" class="sub">Esqueci minha senha</a>
+                <div class="quiz-buttons">
+                    <button id="btn-entrar" class="btn primario">Entrar</button>
+                    <button id="btn-voltar-inicio2" class="btn secondary">Voltar</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <main class="container">
-      <div class="col termos">
-        <h2>Termos</h2>
-        <ul id="lista-termos" class="grid-termos"></ul>
-      </div>
-      <div class="col definicoes">
-        <h2>Definições</h2>
-        <ul id="lista-definicoes" class="grid-definicoes"></ul>
-      </div>
-    </main>
-    <div id="feedback" class="feedback"></div>
-  </section>
+    <section id="tela-menu" class="tela">
+        <div class="card">
+            <h2>Bem-vindo!</h2>
+            <p class="sub">Escolha o que deseja fazer:</p>
+            <div class="quiz-buttons">
+                <button id="btn-iniciar" class="btn primario">Iniciar Quiz</button>
+                <button id="btn-criar-quiz" class="btn secondary">Criar Meu Próprio Quiz</button>
+                <button id="btn-sair" class="btn">Sair</button>
+            </div>
+        </div>
+    </section>
+    
+    <section id="tela-sobre" class="tela">
+        <div class="card">
+            <h2>Sobre o Jogo e Autores</h2>
+            <p class="sub">
+                Este quiz testa seus conhecimentos sobre HTML, CSS e DOM
+                em um jogo interativo de arrastar e soltar.
+            </p>
+            
+            <div class="authors-list">
+                <div class="author-item">
+                    <img src="avatar-placeholder.png" alt="Avatar Thalita" class="author-avatar">
+                    <p>Thalita Ferreira</p>
+                </div>
+                <div class="author-item">
+                    <img src="avatar-placeholder.png" alt="Avatar Amanda" class="author-avatar">
+                    <p>Amanda Paiva</p>
+                </div>
+                <div class="author-item">
+                    <img src="avatar-placeholder.png" alt="Avatar Sophia" class="author-avatar">
+                    <p>Sophia Scardua</p>
+                </div>
+                <div class="author-item">
+                    <img src="avatar-placeholder.png" alt="Avatar Valentina" class="author-avatar">
+                    <p>Valentina Sobral</p>
+                </div>
+            </div>
+            
+            <span class="game-date">Desenvolvido em Outubro de 2025.</span>
 
-  <!-- TELA FINAL -->
-  <section id="tela-final" class="tela">
-    <div class="card">
-      <h2>Parabéns!</h2>
-      <p>Você concluiu todas as rodadas.</p>
-      <p class="sub">Pontuação final: <strong id="pontuacao-final">0</strong></p>
-      <button id="btn-reiniciar" class="btn">Jogar novamente</button>
-    </div>
-  </section>
+            <button id="btn-voltar-sobre" class="btn secondary" style="margin-top: 2rem;">Voltar</button>
+        </div>
+    </section>
 
-  <script src="script.js"></script>
+    <section id="tela-criar-quiz" class="tela">
+        <div class="card">
+            <h2>Criar Novo Quiz</h2>
+            <div id="form-criar-quiz">
+                <div class="quiz-create-form">
+                    <div class="config-quiz">
+                        <div class="input-group">
+                            <label for="num-rounds">Número de Rodadas</label>
+                            <input type="number" id="num-rounds" min="1" max="10" value="3" required>
+                            <span class="input-help">Escolha de 1 a 10 rodadas</span>
+                        </div>
+                        <div class="input-group">
+                            <label for="pairs-per-round">Termos por Rodada</label>
+                            <input type="number" id="pairs-per-round" min="1" max="5" value="3" required>
+                            <span class="input-help">Escolha de 1 a 5 termos</span>
+                        </div>
+                    </div>
+                    <div id="round-indicator">Rodada 1</div>
+                    <input type="text" id="term-input" class="term-input" placeholder="Digite o termo (ex: HTML)" required>
+                    <input type="text" id="definition-input" class="definition-input" placeholder="Digite a definição correspondente" required>
+                    <div class="quiz-buttons">
+                        <button id="btn-add-pair" class="btn">Adicionar Par</button>
+                        <button id="btn-next-round" class="btn secondary" style="display: none;">Próxima Rodada</button>
+                        <button id="btn-salvar-quiz" class="btn primario" style="display: none;">Iniciar Meu Quiz</button>
+                        <button id="btn-voltar-criar" class="btn secondary">Voltar ao Menu</button>
+                    </div>
+                    <div id="current-pairs" class="current-pairs"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tela-jogo" class="tela">
+        <header class="topbar">
+            <div class="info">
+                <span id="etapa">Rodada <strong id="rodada-num">1</strong> de <strong id="rodadas-total">5</strong></span>
+                <span id="placar">Pontuação: <strong id="pontuacao">0</strong></span>
+            </div>
+            <div class="progresso"><div id="progress-bar"></div></div>
+        </header>
+
+        <main class="container">
+            <div class="col termos">
+                <h2>Termos</h2>
+                <ul id="lista-termos" class="grid-termos"></ul>
+            </div>
+            <div class="col definicoes">
+                <h2>Definições</h2>
+                <ul id="lista-definicoes" class="grid-definicoes"></ul>
+            </div>
+        </main>
+        <div id="feedback" class="feedback hidden"></div>
+    </section>
+
+    <section id="tela-final" class="tela">
+        <div class="card">
+            <h2>🎉 Quiz Finalizado!</h2>
+            <p>Parabéns por concluir todas as rodadas.</p>
+            <p class="sub">Pontuação final: <strong id="pontuacao-final" style="font-size: 2rem;">0</strong></p>
+            <div class="quiz-buttons menu-botoes">
+                <button id="btn-fim-refazer" class="btn primario">🔁 Refazer Quiz</button>
+                <button id="btn-fim-menu" class="btn secondary">🏠 Menu Principal</button>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
