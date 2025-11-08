@@ -214,6 +214,16 @@ h1, h2, p, label, .sub, .info {
   color: #c53030;
 }
 
+/* === Deixar "Termos", "Definições" e "Rodada/Pontuação" brancos === */
+.col h2,
+.info,
+.info span,
+.info strong {
+  color: #fff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+
 /* === Responsividade === */
 @media (max-width: 992px) {
   body {
@@ -269,3 +279,4 @@ h1, h2, p, label, .sub, .info {
     font-size: 1.2rem;
   }
 }
+
