@@ -276,7 +276,7 @@ function addDragAndDrop() {
         def.removeEventListener("drop", handleDrop);
         def.addEventListener("drop", handleDrop);
     });
-    
+
     addTouchSupport();
 }
 
@@ -538,42 +538,88 @@ if (btnVoltarCriar) {
 })();
 
 // --- SUPORTE A TOQUE (para celular) ---
+
 function addTouchSupport() {
   const termos = document.querySelectorAll(".termo");
   const definicoes = document.querySelectorAll(".definicao");
   let touchedItem = null;
+  let clone = null;
+  let offsetX = 0;
+  let offsetY = 0;
 
   termos.forEach(termo => {
     termo.addEventListener("touchstart", e => {
+      const touch = e.touches[0];
       touchedItem = termo;
+
+      // criar clone visual
+      clone = termo.cloneNode(true);
+      clone.style.position = "fixed";
+      clone.style.left = "0px";
+      clone.style.top = "0px";
+      clone.style.margin = "0";
+      clone.style.pointerEvents = "none"; // não bloquear toques
+      clone.style.opacity = "0.95";
+      clone.style.transform = "translate(-50%, -50%) scale(1.05)";
+      clone.classList.add("dragging-clone");
+      document.body.appendChild(clone);
+
+      // calcular deslocamento entre ponto do toque e canto do elemento
+      const rect = termo.getBoundingClientRect();
+      offsetX = touch.clientX - (rect.left + rect.width / 2);
+      offsetY = touch.clientY - (rect.top + rect.height / 2);
+
       termo.classList.add("dragging");
-    });
+      e.preventDefault();
+    }, { passive: false });
 
     termo.addEventListener("touchmove", e => {
+      if (!clone) return;
       const touch = e.touches[0];
+      // posiciona o clone centralizado no dedo (ajustado pelo offset)
+      clone.style.left = `${touch.clientX - offsetX}px`;
+      clone.style.top = `${touch.clientY - offsetY}px`;
+
+      // destacar definição sob o dedo
       const target = document.elementFromPoint(touch.clientX, touch.clientY);
       definicoes.forEach(def => def.classList.remove("drag-over"));
       if (target && target.classList.contains("definicao") && !target.classList.contains("matched")) {
         target.classList.add("drag-over");
       }
       e.preventDefault();
-    });
+    }, { passive: false });
 
     termo.addEventListener("touchend", e => {
       termo.classList.remove("dragging");
+      definicoes.forEach(def => def.classList.remove("drag-over"));
+
       const touch = e.changedTouches[0];
       const target = document.elementFromPoint(touch.clientX, touch.clientY);
 
-      definicoes.forEach(def => def.classList.remove("drag-over"));
+      if (clone) {
+        clone.remove();
+        clone = null;
+      }
 
       if (target && target.classList.contains("definicao") && !target.classList.contains("matched")) {
         const definicaoAlvo = target.dataset.targetDefinicao;
         const acertou = touchedItem.dataset.definicao === definicaoAlvo;
 
+        // remove o elemento original e confere resposta
         touchedItem.remove();
         checkAnswer(acertou, target, touchedItem.dataset.termo);
       }
+
+      touchedItem = null;
+    }, { passive: false });
+
+    // opcional: cancelar (por exemplo, touchcancel)
+    termo.addEventListener("touchcancel", () => {
+      termo.classList.remove("dragging");
+      definicoes.forEach(def => def.classList.remove("drag-over"));
+      if (clone) { clone.remove(); clone = null; }
       touchedItem = null;
     });
   });
 }
+
