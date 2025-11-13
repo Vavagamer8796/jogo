@@ -133,8 +133,8 @@ button:hover,
 }
 
 .author-avatar {
-    width: 80px;
-    height: 80px;
+    width: 105px;
+    height: 105px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 8px;

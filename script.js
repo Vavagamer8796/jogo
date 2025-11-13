@@ -276,6 +276,8 @@ function addDragAndDrop() {
         def.removeEventListener("drop", handleDrop);
         def.addEventListener("drop", handleDrop);
     });
+    
+    addTouchSupport();
 }
 
 let draggedItem = null;
@@ -534,3 +536,44 @@ if (btnVoltarCriar) {
         pont._animTimeout = setTimeout(() => pont.classList.remove("animate"), 300);
     };
 })();
+
+// --- SUPORTE A TOQUE (para celular) ---
+function addTouchSupport() {
+  const termos = document.querySelectorAll(".termo");
+  const definicoes = document.querySelectorAll(".definicao");
+  let touchedItem = null;
+
+  termos.forEach(termo => {
+    termo.addEventListener("touchstart", e => {
+      touchedItem = termo;
+      termo.classList.add("dragging");
+    });
+
+    termo.addEventListener("touchmove", e => {
+      const touch = e.touches[0];
+      const target = document.elementFromPoint(touch.clientX, touch.clientY);
+      definicoes.forEach(def => def.classList.remove("drag-over"));
+      if (target && target.classList.contains("definicao") && !target.classList.contains("matched")) {
+        target.classList.add("drag-over");
+      }
+      e.preventDefault();
+    });
+
+    termo.addEventListener("touchend", e => {
+      termo.classList.remove("dragging");
+      const touch = e.changedTouches[0];
+      const target = document.elementFromPoint(touch.clientX, touch.clientY);
+
+      definicoes.forEach(def => def.classList.remove("drag-over"));
+
+      if (target && target.classList.contains("definicao") && !target.classList.contains("matched")) {
+        const definicaoAlvo = target.dataset.targetDefinicao;
+        const acertou = touchedItem.dataset.definicao === definicaoAlvo;
+
+        touchedItem.remove();
+        checkAnswer(acertou, target, touchedItem.dataset.termo);
+      }
+      touchedItem = null;
+    });
+  });
+}
